@@ -6,6 +6,8 @@ import * as Y from "yjs";
 import { SocketIOProvider } from "y-socket.io";
 import { removeAwarenessStates } from "y-protocols/awareness.js";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function App() {
   // const editorRef = useRef(null);
   const [editor, setEditor] = useState(null);
@@ -27,7 +29,7 @@ function App() {
     if (!username || !editor) return;
 
     const provider = new SocketIOProvider(
-      "/",
+      API_URL,
       "monaco",
       ydoc,
       { autoConnect: true },
