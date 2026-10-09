@@ -7,10 +7,9 @@ dotenv.config();
 
 const app = express()
 app.use(express.static("public"))
+app.use(cors({origin: process.env.CLIENT_URL,credentials: true}));
 const httpserver = createServer(app)
 const port = process.env.PORT;
-
-app.use(cors({origin: process.env.CLIENT_URL,credentials: true}));
 
 const io = new Server(httpserver,{
     cors :{
