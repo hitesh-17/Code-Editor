@@ -6,15 +6,21 @@ import dotenv from 'dotenv'
 dotenv.config();
 
 const app = express()
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.CLIENT_URL,
+].filter(Boolean);
+
 app.use(express.static("public"))
-app.use(cors({origin: process.env.CLIENT_URL,credentials: true}));
+app.use(cors({origin: allowedOrigins, credentials: true}));
 const httpserver = createServer(app)
 const port = process.env.PORT;
 
 const io = new Server(httpserver,{
     cors :{
-        origin:'*',
-        methods : ["GET","POST"]
+        origin:allowedOrigins,
+        methods : ["GET","POST"],
+        credentials: true
     }
 });
 
