@@ -3,6 +3,8 @@ import {createServer} from "http"
 import { Server } from "socket.io"
 import { YSocketIO } from 'y-socket.io/dist/server'
 import dotenv from 'dotenv'
+import cors from 'cors'
+
 dotenv.config();
 
 const app = express()
